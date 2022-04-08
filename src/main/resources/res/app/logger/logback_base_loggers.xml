@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<included>
+
+    <logger name="java.sql" level="${spi.logger.dbmsql.level:-debug}" additivity="false"> 
+    	<!-- java.sql.Connection, java.sql.Statement, java.sql.PreparedStatement -->
+		<appender-ref ref="dbmsql" />
+    </logger> 
+	<logger name="org.hibernate.type" level="${spi.logger.dbmsql.level:-debug}" additivity="false">
+		<!-- @see org.hibernate.type.descriptor.sql.BasicBinder -->
+		<appender-ref ref="dbmsql" />
+	</logger>
+	<logger name="org.hibernate.SQL" level="${spi.logger.dbmsql.level:-debug}" additivity="false">
+		<!-- @see org.hibernate.engine.jdbc.spi.SqlStatementLogger#logStatement() -->
+		<appender-ref ref="dbmsql" />
+	</logger>
+    <logger name="org.apache.ibatis" level="${spi.logger.dbmsql.level:-debug}" additivity="false"> 
+        <!-- @see org.apache.ibatis.jdbc.ScriptRunner, SimpleDataSource, SqlMapClientDelegate -->    
+		<appender-ref ref="dbmsql" />
+    </logger>	
+	<logger name="org.mybatis.spring" level="${spi.logger.dbmsql.level:-info}" additivity="false"> 
+		<!-- @SqlSessionUtils, org.mybatis.spring.transaction.SpringManagedTransaction -->
+		<appender-ref ref="dbmsql" />
+    </logger> 
+	<logger name="SELECT" level="${spi.logger.dbmsql.level:-info}" additivity="false"> 
+		<appender-ref ref="dbmsql" />
+    </logger> 
+	<logger name="UPDATE" level="${spi.logger.dbmsql.level:-info}" additivity="false"> 
+		<appender-ref ref="dbmsql" />
+    </logger> 
+	<logger name="INSERT" level="${spi.logger.dbmsql.level:-info}" additivity="false"> 
+		<appender-ref ref="dbmsql" />
+    </logger> 
+	<logger name="DELETE" level="${spi.logger.dbmsql.level:-info}" additivity="false"> 
+		<appender-ref ref="dbmsql" />
+    </logger> 
+	
+	<logger name="jsp_servlet" level="${spi.logger.viewer.level:-info}" additivity="false">
+		<appender-ref ref="common" />
+		<appender-ref ref="viewer" />
+	</logger>
+	
+	<logger name="org.springframework" level="${spi.logger.spring.level:-info}" additivity="false">
+		<appender-ref ref="common" />
+		<!-- appender-ref ref="spring" /> -->
+	</logger>	
+	<logger name="org.apache.ignite.internal" level="${spi.logger.ignite.level:-info}" additivity="false">
+		<appender-ref ref="ignite" />
+	</logger>
+
+	<!-- com.hhoss.util/conf/cache.. -->
+	<logger name="com.hhoss" level="${spi.logger.detail.level:-TRACE}">
+		<appender-ref ref="tracer" />
+	</logger>
+	<logger name="org.apache.ignite.spi" level="${spi.logger.common.level:-info}" />
+	<logger name="org.apache.commons" level="${spi.logger.common.level:-info}" />
+	<logger name="org.apache.http" level="${spi.logger.common.level:-info}" />
+	<logger name="org.apache.zookeeper" level="${spi.logger.common.level:-info}" />	
+	
+	<turboFilter class="com.hhoss.jour.DynamicTraceFilter" />
+	<turboFilter class="com.hhoss.jour.DynamicLevelFilter" />
+	
+</included>

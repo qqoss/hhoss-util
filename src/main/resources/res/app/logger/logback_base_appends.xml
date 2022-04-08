@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<included>
+		
+	<appender name="cyclic" class="ch.qos.logback.core.read.CyclicBufferAppender" />
+	<appender name="common" class="ch.qos.logback.core.ConsoleAppender">
+		<encoder><pattern>${log.common.pattern}</pattern></encoder>
+		<filter class="ch.qos.logback.classic.filter.ThresholdFilter"><level>DEBUG</level></filter>
+	</appender>
+		
+	<!-- 
+	<appender name="onfile" class="ch.qos.logback.core.rolling.RollingFileAppender">
+		<file>${log.home}/${app.project.name:-app}_${app.cluster.site:-site}_onfile.log</file>
+		<encoder><pattern>${log.onfile.pattern}</pattern></encoder>
+		<filter class="ch.qos.logback.classic.filter.ThresholdFilter"><level>INFO</level></filter>
+		<rollingPolicy class="ch.qos.logback.core.rolling.FixedWindowRollingPolicy">
+			<minIndex>10</minIndex>
+			<maxIndex>60</maxIndex>
+			<fileNamePattern>${log.home}/onfile_%d{yyyyMMdd}_%i.log</fileNamePattern>
+		</rollingPolicy>
+		<timeBasedFileNamingAndTriggeringPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">
+        	<maxFileSize>100MB</maxFileSize>
+	    </timeBasedFileNamingAndTriggeringPolicy>
+		<triggeringPolicy class="ch.qos.logback.core.rolling.SizeBasedTriggeringPolicy">
+			<MaxFileSize>100MB</MaxFileSize>
+		</triggeringPolicy>
+	</appender>
+	 -->	
+
+	<appender name="onfile" class="ch.qos.logback.core.rolling.RollingFileAppender">
+		<file>${log.home}/${app.project.name:-app}_${app.cluster.site:-site}_onfile.log</file>
+		<encoder><pattern>${log.onfile.pattern}</pattern></encoder>
+		<!-- filter class="ch.qos.logback.classic.filter.ThresholdFilter"><level>INFO</level></filter> -->
+		<filter class="com.hhoss.jour.LevelTraceFilter"><def>info,deny</def></filter>
+		<rollingPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedRollingPolicy">
+			<maxHistory>${spi.logger.onfile.history:-32}</maxHistory>
+			<fileNamePattern>${log.home}/%d/${app.project.name:-app}_${app.cluster.site:-site}_onfile_%i.zip</fileNamePattern>
+	        <maxFileSize>100MB</maxFileSize>
+		</rollingPolicy>
+	</appender>	
+	
+	<appender name="module" class="ch.qos.logback.core.rolling.RollingFileAppender">
+		<file>${log.home}/${app.project.name:-app}_${app.cluster.site:-site}_module.log</file>
+		<encoder><pattern>${log.onfile.pattern}</pattern></encoder>
+		<!--filter class="ch.qos.logback.classic.filter.ThresholdFilter"><level>DEBUG</level></filter-->
+		<filter class="com.hhoss.jour.LevelTraceFilter"><def>debug,deny</def></filter>
+		<rollingPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedRollingPolicy">
+			<maxHistory>${spi.logger.onfile.history:-32}</maxHistory>
+			<fileNamePattern>${log.home}/%d/${app.project.name:-app}_${app.cluster.site:-site}_module_%i.zip</fileNamePattern>
+	        <maxFileSize>100MB</maxFileSize>
+		</rollingPolicy>
+	</appender>
+	
+	<appender name="dbmsql" class="ch.qos.logback.core.rolling.RollingFileAppender">
+		<file>${log.home}/${app.project.name:-app}_${app.cluster.site:-site}_dbmsql.log</file>
+		<encoder><pattern>${log.onfile.pattern}</pattern></encoder>
+		<rollingPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedRollingPolicy">
+			<maxHistory>${spi.logger.onfile.history:-32}</maxHistory>
+			<fileNamePattern>${log.home}/%d/${app.project.name:-app}_${app.cluster.site:-site}_dbmsql_%i.zip</fileNamePattern>
+	        <maxFileSize>100MB</maxFileSize>
+		</rollingPolicy>
+	</appender>
+
+	<appender name="viewer" class="ch.qos.logback.core.rolling.RollingFileAppender">
+		<file>${log.home}/${app.project.name:-app}_${app.cluster.site:-site}_viewer.log</file>
+		<encoder><pattern>${log.onfile.pattern}</pattern></encoder>
+		<rollingPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedRollingPolicy">
+			<maxHistory>${spi.logger.onfile.history:-32}</maxHistory>
+			<fileNamePattern>${log.home}/%d/${app.project.name:-app}_${app.cluster.site:-site}_viewer_%i.zip</fileNamePattern>
+	        <maxFileSize>100MB</maxFileSize>
+		</rollingPolicy>
+	</appender>	
+	
+	<appender name="ignite" class="ch.qos.logback.core.rolling.RollingFileAppender">
+		<file>${log.home}/${app.project.name:-app}_${app.cluster.site:-site}_ignite.log</file>
+		<encoder><pattern>${log.onfile.pattern}</pattern></encoder>
+		<rollingPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedRollingPolicy">
+			<maxHistory>${spi.logger.onfile.history:-32}</maxHistory>
+			<fileNamePattern>${log.home}/%d/${app.project.name:-app}_${app.cluster.site:-site}_ignite_%i.zip</fileNamePattern>
+	        <maxFileSize>100MB</maxFileSize>
+		</rollingPolicy>
+	</appender>	
+
+	<appender name="tracer" class="ch.qos.logback.core.rolling.RollingFileAppender">
+		<file>${log.home}/${app.project.name:-app}_${app.cluster.site:-site}_tracer.log</file>
+		<encoder><pattern>${log.onfile.pattern}</pattern></encoder>
+		<filter class="com.hhoss.jour.LevelTraceFilter">
+			<!-- <key>log.term</key> --><!-- ThreadKeys.LOG_TERM -->
+			<def>trace,-1,1,-1</def>
+		</filter>
+		<rollingPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedRollingPolicy">
+			<maxHistory>${spi.logger.onfile.history:-32}</maxHistory>
+			<fileNamePattern>${log.home}/%d/${app.project.name:-app}_${app.cluster.site:-site}_tracer_%i.zip</fileNamePattern>
+	        <maxFileSize>100MB</maxFileSize>
+		</rollingPolicy>
+	</appender>	
+	
+</included>

@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- log4j props to logback xml: http://logback.qos.ch/translator/ -->
+<configuration scan="false" scanPeriod="600 seconds">
+	<jmxConfigurator />
+	<contextName>${app.project.name:-app}-${app.startup.code:-0}</contextName>
+	<!-- using default, or setting by app's logback.xml 
+	<jmxConfigurator />
+	<contextName>slf4j_logback</contextName>
+	<property file="${app.runtime.conf}/res/config/config.properties" />
+	<property resource="res/env/${app.cluster.site}.properties" />
+	<property resource="res/app/module/cloud.properties" />
+	 -->
+	<property name="log.home" value="${spi.logger.onfile.home:-./log}" />
+	<property name="log.common.pattern" value="%d{HH:mm:ss.SSS},%contextName,%thread,%X{req.rkey},%X{req.skey},%X{rsp.code},%-5p,%c{80}$%L,%m%n" />
+	<property name="log.socket.pattern" value="%d{yyyy-MM-dd HH:mm:ss.SSS},%contextName,${HOSTNAME},%thread,%X{req.rkey},%X{req.skey},%X{req.code},%X{biz.user},%X{biz.code},%X{biz.acct},%X{biz.mobi},%X{rsp.code},%-5level,%logger{36},%msg%n" />
+	<property name="log.onfile.pattern" value="%d{yyyy-MM-dd HH:mm:ss.SSS},%contextName,%thread,%X{req.rkey},%X{req.skey},%X{rsp.code},%5level,%logger{50},%msg%n" />
+
+	<include resource="res/app/logger/logback_base_appends.xml" />
+	<include resource="res/app/logger/logback_base_loggers.xml" />
+	
+	<root>
+		<level value="${spi.logger.rooter.level:-debug}" />
+		<appender-ref ref="cyclic" />
+		<appender-ref ref="common" />
+		<appender-ref ref="onfile" />
+	</root>
+	
+</configuration>

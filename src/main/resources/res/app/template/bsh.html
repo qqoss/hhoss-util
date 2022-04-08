@@ -1,0 +1,20 @@
+<html>
+<head><title>Evaluate java codes Bean Shell</title></head>
+<body>
+<h1>Evaluate java codes</h1>
+<!-- TEMPLATE-scriptResult -->
+
+<h2>Script</h2>
+<form method="POST" action="<!-- TEMPLATE-servletURL -->">
+	Capture Console:<INPUT type="checkbox" <!-- TEMPLATE-captureOutErr --> name="bsh.servlet.captureOutErr" value="true">
+	Display Result:<INPUT type="checkbox" name="bsh.servlet.output" value="raw">
+<p>
+<TEXTAREA name="bsh.script" rows="10" cols="80">
+<!-- TEMPLATE-script-->
+</TEXTAREA>
+<p>
+<INPUT type="submit" value="Evaluate">
+</form>
+<!-- TEMPLATE-version -->
+</body>
+<html>
