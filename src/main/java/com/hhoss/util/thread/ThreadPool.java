@@ -95,7 +95,7 @@ public final class ThreadPool extends ThreadPoolExecutor implements RejectedExec
 	@Override
     public void execute(Runnable runnable) {
 		Class<?>[] clazz=Classes.callers();
-		for(int i=1;i<clazz.length;i++){
+		for(int i=0;i<clazz.length;i++){
 			if(!clazz[i].isInstance(this)){
 				logger.trace("add async task from {}",clazz[i].getName() );
 				break;

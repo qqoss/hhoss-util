@@ -5,7 +5,6 @@ import java.lang.StackWalker.StackFrame;
 import java.lang.reflect.Method;
 import java.lang.reflect.ParameterizedType;
 import java.lang.reflect.Type;
-import java.util.Arrays;
 import java.util.Comparator;
 
 import com.hhoss.jour.Logger;
@@ -24,10 +23,10 @@ public final class Classes{
 	 * This API targets a mechanism to traverse and materialize required stack frames allowing efficient lazy access to additional stack frames when required.
 	 * @return
 	 */
-	static Class<?>[] getCallers(){
+	static Class<?>[] callers(int skip){
 		//Thread.currentThread().getStackTrace()
 		StackWalker walker = StackWalker.getInstance(Option.RETAIN_CLASS_REFERENCE);
-		Class<?>[] callers = walker.walk(s ->s.map(StackFrame::getDeclaringClass).toArray(Class[]::new));
+		Class<?>[] callers = walker.walk(s ->s.map(StackFrame::getDeclaringClass).skip(skip).toArray(Class[]::new));
 		//Class<?>[] callers = walker.walk(s ->s.map(StackFrame::getDeclaringClass).skip(1).toArray(Class[]::new));
 		//Optional<Class<?>> callerClass = walker.walk(s->s.map(StackFrame::getDeclaringClass).findFirst());
 		//List<StackFrame> stack = walker.walk(s -> s.limit(10).collect(Collectors.toList()));
@@ -36,7 +35,7 @@ public final class Classes{
 	
 		
 	/**
-	 * @return the caller's stack, not include ClassMeta self;
+	 * @return the caller's stack, not include Classes self;
 	 */
 	public static Class<?>[] callers() {
 		/* 
@@ -68,60 +67,31 @@ public final class Classes{
         }
         */
 		//cls 0=instance[.getClassContext()].class=ClassMeta; 1=Caller[ClassMeta.caller(n)].class, 2=Caller{Caller[ClassMeta.caller()]].class
-		Class<?>[] cls = getCallers();
-		return Arrays.copyOfRange(cls, 1, cls.length);
+		//Class<?>[] cls = getCallers(); return Arrays.copyOfRange(cls, 1, cls.length);
+		return callers(2); 
 	}
 
 	/**
 	 * @param i the caller stack index
 	 * @return the caller's class;
 	 * caller is the invoked codes line on
-	 * Caller is 1; Caller's Caller is 2...; ClassMeta is 0;
+	 * Caller is 1; Caller's Caller is 2...; Classes is 0;
 	 */
 	public static Class<?> caller(int i) {
-		return getCallers()[i+1];
-	}
-
-	/**
-	 * @param i the caller stack index
-	 * @return the caller's classNme;
-	 * caller is the invoked codes line on
-	 * Caller is 1; Caller's Caller is 2...; ClassMeta is 0;
-	 */
-	public static String callerName(int i) {
-		//return instance.getClassContext()[i].getName();
-		return caller(i).getName();
-	}
-
-	/**
-	 * @return the self class where code in
-	 */
-	public static Class<?> refer() {
-		//return caller(1);
-		return getCallers()[1];
+		return callers(2)[i];
 	}
 
 	/**
 	 * @return the class of caller
 	 */
 	public static Class<?> caller() {
-		//return caller(2);
-		return getCallers()[2];
-	}
-
-	/**
-	 * @return the class of caller
-	 */
-	public static Class<?> invoker() {
-		//return caller(2);
-		return getCallers()[3];
+		return caller(2);
 	}
 
 	/**
 	 * @return the refer class's name (codes in refer class)
 	 */
 	public static String referName() {
-		//return getClassName(1);
 		return caller(1).getName();
 	}
 	
@@ -129,7 +99,6 @@ public final class Classes{
 	 * @return ReferClass's caller's classNme (eg:LoggerFactory's caller)
 	 */
 	public static String callerName() {
-		//return getClassName(2);
 		return caller(2).getName();
 	}
 
@@ -137,7 +106,6 @@ public final class Classes{
 	 * @return the sub class name which extends caller's class (eg: clazz extends/invoke LoggerFactory's caller)
 	 */
 	public static String invokerName() {
-		//return getClassName(3);
 		return caller(3).getName();
 	}
 	

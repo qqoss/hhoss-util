@@ -3,16 +3,20 @@ package com.hhoss.util.token;
 import java.util.Collection;
 import java.util.Map.Entry;
 
-import com.hhoss.aspi.AbstractProvider;
 import com.hhoss.aspi.Factory;
 import com.hhoss.aspi.Provider;
 import com.hhoss.aspi.SPIManager;
 import com.hhoss.jour.Logger;
 
-public abstract class TokenProvider extends AbstractProvider<String, String> {
-	private static Logger logger;
+public abstract class TokenProvider implements Provider<String, String> {
 	private static final long serialVersionUID = 1883565609968095675L;
 	public static final String PREFIX = "spi.token.provider.";
+	
+	private static Logger logger;
+	private static void logWarn(String format, Object... arguments) {
+		if(logger==null) {logger=Logger.get();}
+		logger.warn(format, arguments);
+	}
 	
 	@SuppressWarnings("rawtypes")
 	public static final TokenProvider from(String simpleName, Object...  params){
@@ -31,9 +35,9 @@ public abstract class TokenProvider extends AbstractProvider<String, String> {
 					}
 				}
 			}
-			getLog().warn("can't get Provider[{}].",simpleName);
+			logWarn("can't get Provider[{}].",simpleName);
 		}catch(Exception e){
-			getLog().warn("Fail when get Provider[{}],exception:{}",spiName,e.getMessage());
+			logWarn("Fail when get Provider[{}],exception:{}",spiName,e.getMessage());
 		}
 		return null;		
 	}
@@ -41,10 +45,6 @@ public abstract class TokenProvider extends AbstractProvider<String, String> {
 	public String get(String key, String def){
 		String val = get(key);
 		return val==null?def:val;
-	}
-	
-	private static Logger getLog(){
-		return logger==null?logger=Logger.get():logger;
-	}
+	}	
 
 }

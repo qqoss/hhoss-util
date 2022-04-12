@@ -2,7 +2,6 @@ package com.hhoss.util.token;
 
 import java.security.AccessController;
 import java.security.PrivilegedAction;
-import java.util.Set;
 
 import com.hhoss.jour.Logger;
 

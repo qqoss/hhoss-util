@@ -4,6 +4,7 @@ package com.hhoss.util.token;
 import java.util.Stack;
 
 import com.hhoss.aspi.Provider;
+import com.hhoss.lang.Classes;
 
 /**
  * @author kejun
@@ -125,6 +126,11 @@ public class TokenResolver extends TokenProvider {
 
 	public static void main(String[] args) {
 		 new TokenResolver(null).test_close();
+	}
+
+	@Override
+	public String getName() {
+		return Classes.referName();
 	}
 
 }

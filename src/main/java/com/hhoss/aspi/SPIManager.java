@@ -36,7 +36,7 @@ public class SPIManager  {
 			Iterator<Provider> itr = ServiceLoader.load(Provider.class).iterator();
 			while(itr.hasNext()){
 				Provider f = itr.next();
-				map.put(f.getName(),f);
+				if(f.getName()!=null) {map.put(f.getName(),f);}
 			}
 			providers = map;
 		}
