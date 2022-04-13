@@ -4,7 +4,7 @@ import java.security.MessageDigest;
 import java.util.Map;
 
 import com.hhoss.jour.Logger;
-import com.hhoss.util.coder.HexCoder;
+import com.hhoss.util.HexCoder;
 
 public class Auth4Crypt extends AuthProvider {
 	private static final Logger logger = Logger.get();

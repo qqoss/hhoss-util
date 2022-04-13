@@ -11,7 +11,7 @@ import com.hhoss.jour.Logger;
 /**
  * TimeUtil for period handle
  * @author kejun
- *
+ * TODO:move to com.hhoss.util
  */
 public class TimeUtil {
 	private static long[] units = new long[15];

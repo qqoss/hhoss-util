@@ -1,4 +1,4 @@
-package com.hhoss.util.coder;
+package com.hhoss.util;
 
 public class Base64 {
 	public static byte[] encode(byte[] bytes){

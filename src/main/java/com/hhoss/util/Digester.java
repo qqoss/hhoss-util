@@ -1,4 +1,4 @@
-package com.hhoss.util.coder;
+package com.hhoss.util;
 
 import java.security.MessageDigest;
 

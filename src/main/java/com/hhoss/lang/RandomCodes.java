@@ -12,7 +12,7 @@ import java.util.Random;
 
 import javax.imageio.ImageIO;
 
-import com.hhoss.util.coder.Base64;
+import com.hhoss.util.Base64;
 
 /**
  * random code images util

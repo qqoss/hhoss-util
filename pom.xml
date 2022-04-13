@@ -4,7 +4,7 @@
 	<parent>
 	  <artifactId>maven-base</artifactId>
 	  <groupId>com.hhoss</groupId>
-	  <version>0.9.7</version>
+	  <version>0.9.8</version>
 	</parent>
 	<name>hhoss util</name>
 	<artifactId>hhoss-util</artifactId>
@@ -18,7 +18,7 @@
         <developerConnection>scm:git:${scm.base.url}</developerConnection>
     </scm>
 	<dependencies>
-		<!-- using ConvertUtils.convert -->
+		<!-- using ConvertUtils.convert - ->
 		<dependency>
 			<groupId>commons-beanutils</groupId>
 			<artifactId>commons-beanutils</artifactId>
@@ -30,7 +30,7 @@
 				</exclusion>
 			</exclusions>
 		</dependency>
-		<!--
+		<!- -
 		<dependency>
 			<groupId>org.apache.commons</groupId>
 			<artifactId>commons-lang3</artifactId>

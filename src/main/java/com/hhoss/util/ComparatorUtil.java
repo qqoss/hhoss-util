@@ -1,8 +1,8 @@
-package com.hhoss.lang;
+package com.hhoss.util;
 
 import java.util.Comparator;
 
-import org.apache.commons.beanutils.BeanUtils;
+import com.hhoss.lang.Beans;
 
 /**
  * sort order handle
@@ -25,13 +25,14 @@ public class ComparatorUtil {
 		};
 	}
 
-	public static String get(Object obj, String fieldName) {
-		String objValue = "";
+	private static String get(Object obj, String fieldName) {
+		Object objValue = "";
 		try {
-			objValue = BeanUtils.getProperty(obj, fieldName);
+			//objValue = BeanUtils.getProperty(obj, fieldName);
+			objValue = Beans.getFieldValue(obj, fieldName);
 		} catch (Exception e) {
 		}
-		return (objValue == null) ? "" : objValue;
+		return (objValue == null) ? "" : objValue.toString();
 	}
 
 	public ComparatorUtil(String orderName, String orderType) {

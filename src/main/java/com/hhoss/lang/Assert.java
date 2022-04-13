@@ -24,6 +24,12 @@ public class Assert {
 			throw new IllegalArgumentException(message);
 		}
 	}
+	
+	public static void verify(boolean expression, String message) {
+		if (!expression) {
+			throw new IllegalArgumentException(message);
+		}
+	}
 
 	public static void isTrue(boolean expression) {
 		isTrue(expression, "[Assertion failed] - this expression must be true");

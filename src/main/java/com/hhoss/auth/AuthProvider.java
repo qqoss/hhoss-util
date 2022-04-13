@@ -5,7 +5,7 @@ import java.security.Provider;
 import java.util.HashMap;
 import java.util.Map;
 
-import com.hhoss.util.coder.Digester;
+import com.hhoss.util.Digester;
 
 //@see java.security.AuthProvider;
 public class AuthProvider extends Provider {

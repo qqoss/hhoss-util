@@ -7,7 +7,7 @@
  * Information"). You shall not disclose such Confidential Information and shall use it only in accordance with the
  * terms of the license agreement you entered into with Prudential.
  */
-package com.hhoss.lang;
+package com.hhoss.util;
 
 import java.sql.Date;
 import java.text.SimpleDateFormat;

@@ -1,6 +1,8 @@
-package com.hhoss.lang;
+package com.hhoss.util;
 
-public class Num {
+import com.hhoss.Constant;
+// * TODO:move to com.hhoss.util
+public class Num implements Constant {
 	//S: size small
 	public static final int S3 = 1<<8; // 0x100 = 256;
 	public static final int S4 = 1<<12; // 0x1000 = 4096;

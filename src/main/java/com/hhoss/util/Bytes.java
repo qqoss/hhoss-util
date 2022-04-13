@@ -1,12 +1,12 @@
-package com.hhoss.util.convert;
+package com.hhoss.util;
 
 import java.nio.ByteBuffer;
+import java.security.MessageDigest;
+import java.util.Date;
 
 
 public class Bytes {
- 
-	
-	public static short toShort(byte[] bs) {
+ 	public static short toShort(byte[] bs) {
 		int b0= bs[0]&0xFF;
  	    return (short)(bs.length>1?bs[1]&0xFF|b0<<8:b0);
 	}
@@ -17,8 +17,7 @@ public class Bytes {
 			v = v<<8|bs[i]&0xFF;
 		}
         return v;
-	}
-	 
+	}	 
     public static long toLong(byte[] bs) {
 		if(bs.length>8) {/*should not here*/}
       	ByteBuffer buffer = ByteBuffer.allocate(8);
@@ -40,8 +39,7 @@ public class Bytes {
 	        (byte) ((is >> 8) & 0xFF),   
 	        (byte) (is & 0xFF)
 	    };
-	}
-	
+	}	
 	public static byte[] from(int is) {
 	    return new byte[] {
 	        (byte) ((is >> 24) & 0xFF),
@@ -49,16 +47,75 @@ public class Bytes {
 	        (byte) ((is >> 8) & 0xFF),   
 	        (byte) (is & 0xFF)
 	    };
-	}
- 
+	} 
     public static byte[] from(long is) {
     	ByteBuffer buffer = ByteBuffer.allocate(8);
     	buffer.putLong(0, is);
         return buffer.array();
     }
+    public static byte[] from(boolean b) {
+        return new byte[]{(byte)(b?1:0)};
+    }
+    public static byte[] from(char c) {
+	    return from((short)c);
+    }
+	public static byte[] from(float f) {
+	    return from(Float.floatToIntBits(f));
+	} 
+    public static byte[] from(double d) {
+        return from(Double.doubleToLongBits(d));
+    }    
+
+    public static byte[] from(Number num) {
+    	if(num==null){return null;}
+    	if(num instanceof Integer) {
+    		return from((int)num);
+    	}else if(num instanceof Long) {
+    		return from((long)num);
+    	}else if(num instanceof Short) {
+    		return from((short)num);
+    	}else if(num instanceof Byte) {
+    		return from((byte)num);
+    	}else if(num instanceof Float) {
+    		return from((float)num);
+    	}else if(num instanceof Double) {
+    		return from((double)num);
+    	}
+    	return from(num.longValue());
+    }
     
-    public static byte[] from(String is) {
-    	return is.trim().getBytes();
+    public static byte[] from(String str) {
+       	if(str==null){return null;}
+    	return str.trim().getBytes();
+    }
+   
+    public static byte[] from(Object obj){
+    	if(obj==null){return null;}
+    	if(obj instanceof Number) {
+    		return from((Number)obj);
+    	}else if(obj instanceof Boolean) {
+    		return from(((boolean)obj)?1:0);
+    	}else if(obj instanceof Character) {
+    		return from((char)obj);
+    	}else if(obj instanceof Date) {
+    		return from(((Date)obj).getTime());
+    	}else if(obj instanceof byte[]) {
+    		return (byte[])obj;
+    	}
+    	return from(obj.toString());
+    }
+   
+    public static byte[] xor(byte[] ba1, byte[] ba2){
+    	if(ba1==null) {return ba2;}
+    	if(ba2==null) {return ba1;}
+    	int len = Math.max(ba1.length, ba2.length);
+    	byte[] bytes = new byte[len];
+    	for(int i=0;i<len;i++) {
+       		int b1= i<ba1.length?ba1[i]&0xFF:0;
+       		int b2= i<ba2.length?ba2[i]&0xFF:0;
+       	    bytes[i]=(byte)(b1^b2);
+    	}
+        return bytes;
     }
     
 	public static void main(String[] args) {
@@ -73,8 +130,6 @@ public class Bytes {
 		int int2 = byte0&0xFF;
 		System.out.println("int2=" + int2);//int2=234
 		
-		
-		
 		//测试 int 转 byte 数组
 		int int3 = 1417;
 		byte[] bytesInt = from(int3);
@@ -82,7 +137,6 @@ public class Bytes {
 		//测试 byte 数组转 int
 		int int4 = toInt(bytesInt);
 		System.out.println("int4=" + int4);//int4=1417
-		
 		
 		//测试 long 转 byte 数组
 		long long1 = 2223;
@@ -94,7 +148,12 @@ public class Bytes {
 		
 		System.out.println("gt=" + Long.toHexString(toLong(from(" 郑郑"))));
 		System.out.println("gt2=" + toString(from(" 郑郑")));
+		System.out.println("byte129=" +(byte)(129^1));
 	}
+	
+    public static boolean isEqual(byte[] a, byte[] b) {
+    	return MessageDigest.isEqual(a, b);
+    }
 
  
 }

@@ -3,7 +3,7 @@ package com.hhoss.ksid;
 import com.hhoss.boot.App;
 import com.hhoss.jour.Logger;
 import com.hhoss.ksid.Seq;
-import com.hhoss.lang.Num;
+import com.hhoss.util.Num;
 
 public class SeqTest {
 	private static final Logger logger = Logger.get();    

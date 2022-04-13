@@ -4,7 +4,7 @@ import com.hhoss.boot.App;
 import com.hhoss.jour.Logger;
 import com.hhoss.ksid.Key;
 import com.hhoss.ksid.Tims;
-import com.hhoss.lang.Num;
+import com.hhoss.util.Num;
 
 public class KeyTest {
 	private static final Logger logger = Logger.get();    

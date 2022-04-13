@@ -2,7 +2,7 @@ package com.hhoss.auth;
 
 import java.util.Map;
 
-import com.hhoss.util.coder.Digester;
+import com.hhoss.util.Digester;
 
 public class Auth4Hash extends AuthProvider {
 	public Auth4Hash(String name) {

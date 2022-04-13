@@ -1,15 +1,15 @@
 package com.hhoss.ksid;
 
-import static com.hhoss.lang.Num.S10;
-import static com.hhoss.lang.Num.S11;
-import static com.hhoss.lang.Num.S12;
-import static com.hhoss.lang.Num.S13;
-import static com.hhoss.lang.Num.S14;
-import static com.hhoss.lang.Num.S15;
-import static com.hhoss.lang.Num.S16;
-import static com.hhoss.lang.Num.S17;
-import static com.hhoss.lang.Num.S18;
-import static com.hhoss.lang.Num.S19;
+import static com.hhoss.util.Num.S10;
+import static com.hhoss.util.Num.S11;
+import static com.hhoss.util.Num.S12;
+import static com.hhoss.util.Num.S13;
+import static com.hhoss.util.Num.S14;
+import static com.hhoss.util.Num.S15;
+import static com.hhoss.util.Num.S16;
+import static com.hhoss.util.Num.S17;
+import static com.hhoss.util.Num.S18;
+import static com.hhoss.util.Num.S19;
 
 import java.util.concurrent.atomic.AtomicLong;
 

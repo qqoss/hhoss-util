@@ -1,12 +1,12 @@
 package com.hhoss.ksid;
 
-import static com.hhoss.lang.Num.S3;
-import static com.hhoss.lang.Num.S4;
-import static com.hhoss.lang.Num.S5;
-import static com.hhoss.lang.Num.S6;
-import static com.hhoss.lang.Num.S7;
-import static com.hhoss.lang.Num.S8;
-import static com.hhoss.lang.Num.S9;
+import static com.hhoss.util.Num.S3;
+import static com.hhoss.util.Num.S4;
+import static com.hhoss.util.Num.S5;
+import static com.hhoss.util.Num.S6;
+import static com.hhoss.util.Num.S7;
+import static com.hhoss.util.Num.S8;
+import static com.hhoss.util.Num.S9;
 
 import java.util.concurrent.atomic.AtomicInteger;
 

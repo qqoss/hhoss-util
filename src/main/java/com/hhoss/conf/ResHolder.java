@@ -23,9 +23,10 @@ import java.util.TreeMap;
 import com.hhoss.boot.App;
 import com.hhoss.jour.Logger;
 import com.hhoss.jour.LoggerFactory;
-import com.hhoss.util.HMap;
 import com.hhoss.lang.Judge;
 import com.hhoss.util.Enumerations;
+import com.hhoss.util.HMap;
+import com.hhoss.util.Strings;
 import com.hhoss.util.token.PresetProvider;
 import com.hhoss.util.token.TokenProvider;
 import com.hhoss.util.token.Tokens;
@@ -345,14 +346,13 @@ public final class ResHolder extends Properties {
 	 * the max matches entry is 1000 for prefix; <br />
 	 * value item only support 10 radix, not support 16 radix
 	 * @param key the key of property or prefix of property Array
-	 * @param klass the class of element type
+	 * @param klass the class of element type, should be privative
 	 * @return List list is not null and each item is not null
 	 */
-	@SuppressWarnings("unchecked")
 	public <T> List<T> getList(String key, Class<T> klass) {
 		List<T> list = new ArrayList<>();
 		for(String s:getList(key)){
-			list.add((T)org.apache.commons.beanutils.ConvertUtils.convert(s, klass));
+			list.add(Strings.convert(s, klass));
 		}
 		return list;
 	}

@@ -21,9 +21,9 @@ import javax.naming.directory.SearchControls;
 import javax.naming.directory.SearchResult;
 
 import com.hhoss.jour.Logger;
-import com.hhoss.util.coder.Base64;
-import com.hhoss.util.coder.Digester;
-import com.hhoss.util.coder.HexCoder;
+import com.hhoss.util.Base64;
+import com.hhoss.util.Digester;
+import com.hhoss.util.HexCoder;
 import com.hhoss.util.thread.ThreadPool;
 
 

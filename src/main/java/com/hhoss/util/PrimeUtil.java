@@ -1,4 +1,4 @@
-package com.hhoss.hash;
+package com.hhoss.util;
 
 import java.util.Arrays;
 
