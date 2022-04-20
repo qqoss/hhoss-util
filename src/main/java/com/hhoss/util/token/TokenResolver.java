@@ -130,7 +130,7 @@ public class TokenResolver extends TokenProvider {
 
 	@Override
 	public String getName() {
-		return Classes.referName();
+		return Classes.getName();
 	}
 
 }

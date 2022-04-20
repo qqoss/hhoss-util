@@ -141,7 +141,7 @@ public class ResHolderTest {
 	}
 
 	public static void main(String[] args){		
-		App.defaultInitial();
+		App.initial();
 		LoggerConfig.initial();
 		logger = Logger.get();
 		test1();

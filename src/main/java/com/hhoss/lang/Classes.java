@@ -218,33 +218,27 @@ public final class Classes {
 		return callers(2)[i];
 	}
 
-	/**
-	 * @return the class of caller
-	 */
-	public static Class<?> caller() {
-		return caller(2);
-	}
+    /**
+     * @return the caller class of the current method called by
+     */
+    public static Class<?> caller() {
+      return caller(2);
+  }
+
 
 	/**
-	 * @return the refer class's name (codes in refer class)
+	 * @return the refer class of the current codes write on
+	 * can use to instead class.getClass();
 	 */
-	public static String referName() {
+    public static Class<?> get() {
+      return caller(1);
+    }
+
+    /**
+	 * @return the refer class' name of current codes write on
+	 */
+	public static String getName() {
 		return caller(1).getName();
-	}
-
-	/**
-	 * @return ReferClass's caller's classNme (eg:LoggerFactory's caller)
-	 */
-	public static String callerName() {
-		return caller(2).getName();
-	}
-
-	/**
-	 * @return the sub class name which extends caller's class (eg: clazz
-	 *         extends/invoke LoggerFactory's caller)
-	 */
-	public static String invokerName() {
-		return caller(3).getName();
 	}
 
 	@SuppressWarnings("unchecked")

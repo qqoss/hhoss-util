@@ -1,6 +1,6 @@
 package com.hhoss.util;
 
-import com.hhoss.Constant;
+import com.hhoss.lang.Constant;
 // * TODO:move to com.hhoss.util
 public class Num implements Constant {
 	//S: size small

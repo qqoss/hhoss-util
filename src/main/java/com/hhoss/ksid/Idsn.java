@@ -155,7 +155,7 @@ public class Idsn {
     }
     		
     private static int functionId(){
-    	String name = Classes.invokerName();
+    	String name = Classes.caller(2).getName();
     	return name.hashCode()&0x1F;
     }
     

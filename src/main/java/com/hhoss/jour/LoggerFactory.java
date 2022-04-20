@@ -17,14 +17,7 @@ public final class LoggerFactory {
 	 * should invoke method in endpoint class
 	 */
 	public static LocationAwareLogger getLogger(){
-		return getLogger(Classes.callerName());
-	}
-	
-	/**
-	 * @return Logger with caller's className as loggerName name
-	 */
-	public static LocationAwareLogger refLogger(){
-		return getLogger(Classes.invokerName());
+		return getLogger(Classes.caller().getName());
 	}
 	
 	/**
@@ -47,8 +40,16 @@ public final class LoggerFactory {
 			}
 		}catch(Exception e){}		
 		return (LocationAwareLogger)log;
-	}
+	}	
 	
+	/**
+	 * @return Logger with caller's className as loggerName name
+	 */
+	@Deprecated(forRemoval = true)
+	static LocationAwareLogger refLogger(){
+		return getLogger(Classes.caller(2).getName());
+	}
+
 	public static LocationAwareLogger getParent(LocationAwareLogger logger){
 		String name = logger.getName();
 		int idx = name.lastIndexOf('.');

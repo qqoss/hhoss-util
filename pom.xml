@@ -1,24 +1,23 @@
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
-	<modelVersion>4.0.0</modelVersion>
-	<parent>
-	  <artifactId>maven-base</artifactId>
-	  <groupId>com.hhoss</groupId>
-	  <version>0.9.8</version>
-	</parent>
-	<name>hhoss util</name>
-	<artifactId>hhoss-util</artifactId>
-	<url>${scm.base.url}</url>
- 	<properties>
-		<scm.base.url>https://github.com/qqoss/${project.artifactId}</scm.base.url>
-	</properties>
-    <scm>
-        <url>${scm.base.url}</url>
-        <connection>scm:git:${scm.base.url}</connection>
-        <developerConnection>scm:git:${scm.base.url}</developerConnection>
-    </scm>
-	<dependencies>
-		<!-- using ConvertUtils.convert - ->
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <parent>
+    <artifactId>maven-base</artifactId>
+    <groupId>com.hhoss</groupId>
+    <version>1.0.1</version>
+  </parent>
+  <name>hhoss util</name>
+  <artifactId>hhoss-util</artifactId>
+  <url>${scm.base.url}</url>
+  <properties>
+    <scm.base.url>https://github.com/qqoss/${project.artifactId}</scm.base.url>
+  </properties>
+  <scm>
+    <url>${scm.base.url}</url>
+    <connection>scm:git:${scm.base.url}</connection>
+    <developerConnection>scm:git:${scm.base.url}</developerConnection>
+  </scm>
+  <dependencies>
+    <!-- using ConvertUtils.convert - ->
 		<dependency>
 			<groupId>commons-beanutils</groupId>
 			<artifactId>commons-beanutils</artifactId>
@@ -52,5 +51,5 @@
 		  <version>1.8.1</version>
 		</dependency>
 		-->
-	</dependencies>		
+  </dependencies>
 </project>

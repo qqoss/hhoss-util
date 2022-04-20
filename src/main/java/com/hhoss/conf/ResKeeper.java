@@ -213,7 +213,7 @@ public final class ResKeeper {
 		try {
 			ResHolder newProps = new ResHolder(bundle);
 			newProps.loadBundle(loader,Locale.ROOT);
-			logger.debug("loaded [{}] succeed.",bundle);
+			logger.debug("loaded [{}]",bundle);
 			bundleMap.put(bundle, newProps);
 			// recurse load parent properties as defaults;
 			if (parentProps == null) {

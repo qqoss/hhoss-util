@@ -1,4 +1,4 @@
-package com.hhoss;
+package com.hhoss.lang;
 
 /**
  *class or interface extends Constant , will be easy to find all defined constants 

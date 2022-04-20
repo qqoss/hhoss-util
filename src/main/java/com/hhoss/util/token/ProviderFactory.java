@@ -51,7 +51,7 @@ public class ProviderFactory implements Factory<String,TokenProvider> {
 	}
 	
 	@Override public String getName() {
-		return Classes.referName();//"spi.coder.provider.factory";
+		return Classes.getName();//"spi.coder.provider.factory";
 	}
 	
 }

@@ -10,7 +10,7 @@ public interface Factory<S extends Serializable,F> {
 	/**
 	 * @return the factory name
 	 */
-	default String getName() {return Classes.referName();}
+	default String getName() {return Classes.getName();}
 	/**
 	 * @return the support names of generated instance
 	 */

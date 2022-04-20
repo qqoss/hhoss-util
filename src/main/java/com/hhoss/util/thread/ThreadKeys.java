@@ -1,6 +1,6 @@
 package com.hhoss.util.thread;
 
-import com.hhoss.Constant;
+import com.hhoss.lang.Constant;
 
 public class ThreadKeys implements Constant {
 	private static final String activeDS = "spi.datasource.current";

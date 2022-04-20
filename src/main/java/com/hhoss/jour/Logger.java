@@ -4,6 +4,8 @@ import org.slf4j.Marker;
 import org.slf4j.MarkerFactory;
 import org.slf4j.spi.LocationAwareLogger;
 
+import com.hhoss.lang.Classes;
+
 import ch.qos.logback.core.CoreConstants;
 
 /**
@@ -323,8 +325,8 @@ public final class Logger implements LocationAwareLogger {
 	}
 
 	public static Logger get() {
-		return new Logger(LoggerFactory.refLogger());
-		//return get(com.hhoss.lang.ClassMeta.callerName());
+      return get(Classes.caller().getName());
+		//return new Logger(LoggerFactory.refLogger());
 		//return ProxyUtil.getObject(LoggerFactory.refLogger(),Logger.class);
 	}
 	

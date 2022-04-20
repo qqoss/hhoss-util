@@ -8,6 +8,8 @@ import java.util.Enumeration;
 
 import com.hhoss.conf.EnvHolder;
 import com.hhoss.jour.Logger;
+import com.hhoss.lang.Classes;
+import com.hhoss.util.Files;
 import com.hhoss.util.token.TokenProvider;
 
 /**
@@ -19,11 +21,12 @@ public class App extends EnvHolder {
 	
 	/**
 	 * default initialization, for single boot or test.
-	 * 
+	 * folder will be ear|war|jars' folder, and using res.root as root 
 	 */
-	public final static void defaultInitial() {
-		logger.info("Default app initializing...");
-		new App().initial(null,null);
+	public final static void initial() {
+	    Class<?> clazz = Classes.caller();
+		logger.info("initializing from {}",clazz);
+		new App().initial(Files.findBoot(clazz),null);
 	}
 
 	@Override
@@ -57,8 +60,8 @@ public class App extends EnvHolder {
 		String appSite = sys.get(APP_CLUSTER_SITE);
 		if(appSite!=null ){ setRootEnv(APP_CLUSTER_SITE, appSite); }
 		
-		String temPath = sys.get(APP_TEMPARY_PATH,sys.get("java.io.tmpdir"));
-		setRootEnv(APP_TEMPARY_PATH, temPath==null?runPath:temPath);
+		String temPath = sys.get(APP_TEMPARY_PATH,Files.findTemp());
+		setRootEnv(APP_TEMPARY_PATH, temPath==null?runPath:temPath);//
 		
 		super.prepare();
 	}

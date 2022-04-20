@@ -4,7 +4,6 @@ package com.hhoss.util.thread;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.TimeUnit;
 
-import com.hhoss.boot.App;
 import com.hhoss.jour.Logger;
 import com.hhoss.ksid.Key;
 
@@ -61,7 +60,6 @@ public final class ThreadPoolTest{
 	
 	public static void main(String[] args) {
 		try {
-			App.defaultInitial();
 			test2();
 			new ThreadPoolTest().test3();
 			//new ThreadPoolTest().test();

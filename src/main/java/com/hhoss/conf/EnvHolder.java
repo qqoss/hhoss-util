@@ -6,8 +6,8 @@ import java.util.List;
 import java.util.Properties;
 
 import com.hhoss.boot.App;
-import com.hhoss.jour.Logger;
 import com.hhoss.lang.Judge;
+import com.hhoss.util.Files;
 
 
 /**
@@ -80,7 +80,7 @@ public abstract class EnvHolder {
 	 */
 	private static void checkInitial(){
 		if( status>0 ) return;
-		App.defaultInitial();
+		App.initial();
 	}
 	
 	/**
@@ -90,7 +90,7 @@ public abstract class EnvHolder {
 	protected final void initial(final String folder, final String bundle) {
 		status++;
 		setRootEnv(APP_PREPARE_FLAG,"0");
-		setResFolder(normalize(folder));
+		setResFolder(Files.findRoot(folder));
 		prepare();
 		envKeeper.initial(bundle);
 		status++;
@@ -113,7 +113,7 @@ public abstract class EnvHolder {
 	 * @return envKeeper the env keeper for current app;
 	*/
 	public static EnvKeeper getKeeper() {
-		//checkInitial();
+		checkInitial();//can be removed check?
 		return envKeeper;
 	}
 	
@@ -135,55 +135,6 @@ public abstract class EnvHolder {
 		 * for logback...only affected in current jvm thread, so using static EnvKeeper .
 		*/
 		//System.getProperties().putAll(envKeeper.getRootProps());
-	}
-
-	//TODO: if from jar, should have  "!/"
-	//@see org.springframework.util.ResourceUtils.JAR_URL_SEPARATOR="!/"
-	protected static String normalize(String rootPath) {
-		String path = normalize(rootPath,getClassLocation(EnvHolder.class));
-		if (path.endsWith("classes")) { //classes or test-classes
-			int idx = path.lastIndexOf('/');
-			if(idx<0){idx= path.indexOf('\\');}
-			path = path.substring(0, idx);
-		} else if (path.endsWith("lib")) {
-			path = path.substring(0, path.length() - 4);
-		}
-		// for web app, return web root;
-		if (path.endsWith("WEB-INF")) {
-			path = path.substring(0, path.length() - 8);
-		}
-		// for app, return web root;
-		if (path.endsWith("META-INF")) {
-			path = path.substring(0, path.length() - 9);
-		}
-		return path;
-	}
-	
-	protected static String normalize(String original,String defaults){
-		String path = original==null?defaults:original;
-		if(path!=null){
-			path=path.trim();
-			if (path.endsWith("/") || path.endsWith("\\")) {
-				path = path.substring(0, path.length() - 1);
-			}
-		}
-		return path;
-	}
-
-	/**
-	 * Kryo@20070914 get a class or jar root path
-	 * 
-	 * @param Class
-	 * @return String - class root path; if loaded by webapp classloader, then
-	 *         return webinf path; not endWith "/", like "/d:/p0/p1/p2";
-	 */
-	private static String getClassLocation(Class<?> clazz) {
-		String path = clazz.getResource("/").getPath();
-		int pos = path.indexOf(clazz.getPackage().getName().replace('.', '/'));// "/biz/zheng/log"
-		if (pos > 0){
-			path = path.substring(0, pos - 1);
-		}
-		return path;
 	}
 
 	/**
@@ -218,10 +169,11 @@ public abstract class EnvHolder {
 	
 	/**
 	 * Cast type as ResHolder, from {@link #getProperties(String)}
+	 * quick link properties for more function
 	 * @param bundleKey
 	 * @return ResHolder
 	 */
-	public static ResHolder getRes(String bundleKey) {
+	public static ResHolder res(String bundleKey) {
 		return (ResHolder)getProperties(bundleKey);
 	}
 	
@@ -418,9 +370,5 @@ public abstract class EnvHolder {
 	public static String getConfigRoot() {
 		return getKeeper().getConfigRoot();
 	}
-
-	public static void main(String[] args) {
-		Logger.get().info(getClassLocation(EnvKeeper.class));
-	}	
 
 }

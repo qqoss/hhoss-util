@@ -1,8 +1,6 @@
 package com.hhoss.ksid;
 
-import com.hhoss.boot.App;
 import com.hhoss.jour.Logger;
-import com.hhoss.ksid.Seq;
 import com.hhoss.util.Num;
 
 public class SeqTest {
@@ -57,7 +55,6 @@ public class SeqTest {
  
     public static void main(String[] args){
     	logger.debug("tims:{} => {}",System.currentTimeMillis()/1000);
-    	App.defaultInitial();
 //       	test1();
        	test2();
        	test18();

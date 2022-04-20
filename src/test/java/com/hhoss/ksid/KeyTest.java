@@ -1,9 +1,6 @@
 package com.hhoss.ksid;
 
-import com.hhoss.boot.App;
 import com.hhoss.jour.Logger;
-import com.hhoss.ksid.Key;
-import com.hhoss.ksid.Tims;
 import com.hhoss.util.Num;
 
 public class KeyTest {
@@ -30,7 +27,6 @@ public class KeyTest {
     }
   
     public static void main(String[] args){
-     	App.defaultInitial();
        	test();
        	int tims = 0;
        	logger.debug("---");
